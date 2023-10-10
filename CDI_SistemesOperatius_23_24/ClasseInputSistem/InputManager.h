@@ -17,7 +17,7 @@ public:
 		int keyCode; 
 		OnKeyPress onKeyPress;
 
-		KeyBinding(int keyCode, OnKeyPress onKeyPress);
+		KeyBinding(int keyCode,/* unsigned long miliseconsTriggerDeLay,*/ OnKeyPress onKeyPress);
 		~KeyBinding(); 
 
 		unsigned int GetSubscriptionId() const;
@@ -47,7 +47,6 @@ public:
 	void StartListener();
 	void StopListener();
 
-	
 
 	// Key binding esta definida dentro de otra classe
 	unsigned int AddListener(int keyCode, unsigned long miliseconsTriggerDeLay, KeyBinding::OnKeyPress onKeyPress);
