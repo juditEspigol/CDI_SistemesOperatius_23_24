@@ -18,12 +18,14 @@ void main() {
 
 
 	// TESTEAR INPUT MANAGER 
-	InputManager* IManager = new InputManager();
+	/*InputManager* IManager = new InputManager();
 
 	IManager->StartListener(); // Enciende la funcion loop con un detach
 
 	// Para que no se cierre el programa
 	while (true) 
 	{
-	}
+	}*/
+
+
 }
