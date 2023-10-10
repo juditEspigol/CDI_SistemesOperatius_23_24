@@ -12,15 +12,11 @@ public:
 	// Ejecuta una funcion cuando acaba de contar
 	void StartTimer(unsigned long miliseconsTriggerDeLay /*function lambda */) {
 
-		_timerThread = new std::thread(&ConsoleControl::Wait, miliseconsTriggerDeLay);
+		// LA FUNCTION LAMBDA ESTARA EN FUNCIONAMENT EL TEMPS QUE ESTIGUI EL THREAD EN FUNCIONAMENT 
+		_timerThread = new std::thread(&ConsoleControl::Wait, this, miliseconsTriggerDeLay);
 		_timerThread->detach();
-
-		// cuando el thread acabe ejecuta la funcion lambda
 	}
 
-
-
-
 	// Ejecuta una funcion en bucle cada vez que acaba de contar
-	void StartLoopTimer(unsigned long miliseconsTriggerDeLay);
+	void StartLoopTimer(unsigned long miliseconsTriggerDeLay /*function lambda*/);
 };
