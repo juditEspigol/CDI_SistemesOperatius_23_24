@@ -26,6 +26,17 @@ void main() {
 	while (true) 
 	{
 	}*/
+	InputManager* iManager = new InputManager(); 
+	int keyCodeToRead = ConsoleControl::WaithForReadNextKey(); 
+	int tryes = 0; 
 
+	iManager->AddListenerAsync(keyCodeToRead, 100011, [&tryes, iManager](int keyCode) {
+		tryes++;
+		std::cout << "Intento numero " << tryes << std::endl;
+		}); 
+	iManager->StartListener(); 
+
+	while(true){
+	}
 
 }

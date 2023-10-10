@@ -27,7 +27,7 @@ public:
 	
 private:
 	std::mutex* _isStartedMutex = new std::mutex();
-	// Protejo la variable si diferentes threds pueden acceder a ella
+	// Protejo la variable si diferentes threads pueden acceder a ella
 	bool _isStarted = false; 
 
 	typedef std::map<int, std::list<KeyBinding*>*> KeyBindingListsMap; 
@@ -51,7 +51,7 @@ public:
 	// Key binding esta definida dentro de otra classe
 	unsigned int AddListener(int keyCode, unsigned long miliseconsTriggerDeLay, KeyBinding::OnKeyPress onKeyPress);
 	unsigned int AddListenerAsync(int keyCode, unsigned long miliseconsTriggerDeLay, KeyBinding::OnKeyPress onKeyPress); 
-	// La siguiente telca no estara imediatamente funcionando
+	// La siguiente tecla no estara imediatamente funcionando
 	void RemoveListener(unsigned int subscriptionId);
 	void RemoveListenerAsync(unsigned int subscriptionId); 
 };
