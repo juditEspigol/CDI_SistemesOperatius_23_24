@@ -60,6 +60,28 @@ void InputManager::ReadLoop()
 	}
 }
 
+void InputManager::SaveListener(KeyBinding* keyBinding)
+{
+	_listenersMapMutex->lock();
+
+	KeyBindingListsMap::iterator pair = _listenersMap->find(keyBinding->keyCode);
+	// Revisar si lo ha encontrado
+	std::list<KeyBinding*>* keyBindings = nullptr;
+
+	if (pair == _listenersMap->end()) // No lo ha encontrado
+	{
+		keyBindings = new std::list<KeyBinding*>();
+		_listenersMap->emplace(keyBinding->keyCode, keyBindings);
+	}
+	else // Lo ha encontrado
+	{
+		keyBindings = pair->second;
+	}
+	keyBindings->push_back(keyBinding);
+
+	_listenersMapMutex->unlock();
+}
+
 void InputManager::StopListener()
 {
 	/**
@@ -71,30 +93,24 @@ void InputManager::StopListener()
 	_isStartedMutex->unlock(); 
 }
 
-unsigned int InputManager::AddListener(int keyCode, KeyBinding::OnKeyPress onKeyPress)
+unsigned int InputManager::AddListener(int keyCode, unsigned long miliseconsTriggerDeLay, KeyBinding::OnKeyPress onKeyPress)
 {
 	KeyBinding* binding = new KeyBinding(keyCode, onKeyPress); 
 
-	_listenersMapMutex->lock();
-
-	KeyBindingListsMap::iterator pair = _listenersMap->find(keyCode); 
-	// Revisar si lo ha encontrado
-	std::list<KeyBinding*>* keyBindings = nullptr; 
-
-	if (pair == _listenersMap->end()) // No lo ha encontrado
-	{
-		keyBindings = new std::list<KeyBinding*>(); 
-		_listenersMap->emplace(keyCode, keyBindings); 
-	} 
-	else // Lo ha encontrado
-	{
-		keyBindings = pair->second; 
-	}
-	keyBindings->push_back(binding); 
-
-	_listenersMapMutex->unlock();
+	SaveListener(binding); 
 
 	return binding->GetSubscriptionId();
+}
+
+unsigned int InputManager::AddListenerAsync(int keyCode, unsigned long miliseconsTriggerDeLay, KeyBinding::OnKeyPress onKeyPress) 
+{
+	KeyBinding* binding = new KeyBinding(keyCode, onKeyPress); 
+
+	std::thread* safeListenerThread = new std::thread(&InputManager::SaveListener, this, binding); 
+
+	safeListenerThread->detach(); 
+
+	return binding->GetSubscriptionId(); 
 }
 
 void InputManager::RemoveListener(unsigned int subscriptionId)
@@ -116,6 +132,12 @@ void InputManager::RemoveListener(unsigned int subscriptionId)
 		}
 	}
 	_listenersMapMutex->unlock(); 
+}
+
+void InputManager::RemoveListenerAsync(unsigned int subscriptionId)
+{
+	std::thread* safeListenerThread = new std::thread(&InputManager::RemoveListener, this, subscriptionId); 
+	safeListenerThread->detach(); 
 }
 
 InputManager::KeyBinding::KeyBinding(int keyCode, OnKeyPress onKeyPress)
