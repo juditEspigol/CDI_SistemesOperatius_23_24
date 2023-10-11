@@ -1,6 +1,8 @@
 
 #include "ConsoleControl.h"
 #include "InputManager.h"
+#include "Timer.h"
+#include "Question.h"
 
 void main() {
 
@@ -26,7 +28,7 @@ void main() {
 	while (true) 
 	{
 	}*/
-	InputManager* iManager = new InputManager(); 
+	/*InputManager* iManager = new InputManager(); 
 	int keyCodeToRead = ConsoleControl::WaithForReadNextKey(); 
 	int tryes = 0; 
 
@@ -37,6 +39,31 @@ void main() {
 	iManager->StartListener(); 
 
 	while(true){
-	}
+	}*/
 
+
+	/*Timer* timer = new Timer(); 
+
+	timer->StartTimer(1000, []() {
+		std::cout << "holi";
+		}); 
+
+	timer->StartTimer(3000, []() {
+		std::cout << "adios";
+		});*/
+
+	Question* question = new Question("Suspendo?", { "Si", "Seguramente", "Obvio", "Todas"}, 3);
+
+	question->DrawAll(); 
+
+	Timer::StartTimer(3000, [question]() {
+			question->SelectAnswer(new unsigned int(2)); 
+		}); 
+
+	Timer::StartTimer(5000, [question]() {
+		question->SelectAnswer(new unsigned int(1));
+		});
+
+
+	while (true) {}; 
 }

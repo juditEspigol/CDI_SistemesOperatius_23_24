@@ -2,25 +2,30 @@
 #include "ConsoleControl.h"
 #include <thread>
 #include <mutex>
+#include <functional>
+#include "ConsoleControl.h"
 
 static class Timer
 {
 private:
-	std::thread* _timerThread;
+	typedef std::function<void()> OntimeElapsed;
+	typedef std::function<bool()> OntimeElapsedWithLoop;
 
 public:
+	Timer(){ }
 	// Ejecuta una funcion cuando acaba de contar
-	void StartTimer(unsigned long miliseconsTriggerDeLay /*function lambda */) {
-
-		_timerThread = new std::thread(&ConsoleControl::Wait, miliseconsTriggerDeLay);
-		_timerThread->detach();
-
-		// cuando el thread acabe ejecuta la funcion lambda
+	static void StartTimer(unsigned long timeRequired, OntimeElapsed onTimeElapsed)
+	{
+		std::thread* timerThread = new std::thread([timeRequired, onTimeElapsed]() {
+			ConsoleControl::Wait(timeRequired);
+			onTimeElapsed();
+			});
+		timerThread->detach();  
 	}
 
-
-
-
 	// Ejecuta una funcion en bucle cada vez que acaba de contar
-	void StartLoopTimer(unsigned long miliseconsTriggerDeLay);
+	static void StartLoopTimer(unsigned long timeRequired, OntimeElapsedWithLoop onTimeElapsedWithLoop)
+	{
+
+	}
 };

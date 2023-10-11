@@ -132,7 +132,6 @@
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Answer.h" />
     <ClInclude Include="ConsoleControl.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Question.h" />
