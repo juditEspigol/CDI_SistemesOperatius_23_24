@@ -3,6 +3,7 @@
 #include "InputManager.h"
 #include "Timer.h"
 #include "Question.h"
+#include "QuestionManager.h"
 
 void main() {
 
@@ -52,18 +53,41 @@ void main() {
 		std::cout << "adios";
 		});*/
 
-	Question* question = new Question("Suspendo?", { "Si", "Seguramente", "Obvio", "Todas"}, 3);
+	QuestionManager* questionManager = new QuestionManager();
 
-	question->DrawAll(); 
+	InputManager* iManager = new InputManager(); 
+	iManager->StartListener(); 
 
-	Timer::StartTimer(3000, [question]() {
-			question->SelectAnswer(new unsigned int(2)); 
+	// x = 2s + numAnswers * 2s;
+	unsigned long count = 2000 + (questionManager->_questions.size() * 2000);
+
+	Timer::StartTimer(count, []() {
+
+
+
 		}); 
 
-	Timer::StartTimer(5000, [question]() {
-		question->SelectAnswer(new unsigned int(1));
+
+	iManager->AddListenerAsync(KB_0, [](int keyCode) {
+		
 		});
 
 
-	while (true) {}; 
+
+	// se que esto no va aqui pero de momento se queda aqui 
+	for (const auto iter : questionManager->_questions)
+	{
+		// lo pintamos
+		iter->DrawAll();
+
+		// esperamos x tiempo a que este seleccionando a traves de inputs 
+
+
+		// ensenyamos la respuesta correcta mientras waiteamos 
+		Timer::StartTimer(3000, [iter]() {
+			iter->SelectAnswer(new unsigned int(2));
+			});
+	}
+	system("cls");
+	std::cout << "You finished!!" << std::endl;
 }

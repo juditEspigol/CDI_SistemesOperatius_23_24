@@ -93,7 +93,7 @@ void InputManager::StopListener()
 	_isStartedMutex->unlock(); 
 }
 
-unsigned int InputManager::AddListener(int keyCode, unsigned long miliseconsTriggerDeLay, KeyBinding::OnKeyPress onKeyPress)
+unsigned int InputManager::AddListener(int keyCode,/* unsigned long miliseconsTriggerDeLay, */KeyBinding::OnKeyPress onKeyPress)
 {
 	KeyBinding* binding = new KeyBinding(keyCode, onKeyPress); 
 
@@ -102,7 +102,7 @@ unsigned int InputManager::AddListener(int keyCode, unsigned long miliseconsTrig
 	return binding->GetSubscriptionId();
 }
 
-unsigned int InputManager::AddListenerAsync(int keyCode, unsigned long miliseconsTriggerDeLay, KeyBinding::OnKeyPress onKeyPress) 
+unsigned int InputManager::AddListenerAsync(int keyCode,/* unsigned long miliseconsTriggerDeLay,*/ KeyBinding::OnKeyPress onKeyPress) 
 {
 	KeyBinding* binding = new KeyBinding(keyCode, onKeyPress); 
 

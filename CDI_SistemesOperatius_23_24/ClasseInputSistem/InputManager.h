@@ -49,8 +49,8 @@ public:
 
 
 	// Key binding esta definida dentro de otra classe
-	unsigned int AddListener(int keyCode, unsigned long miliseconsTriggerDeLay, KeyBinding::OnKeyPress onKeyPress);
-	unsigned int AddListenerAsync(int keyCode, unsigned long miliseconsTriggerDeLay, KeyBinding::OnKeyPress onKeyPress); 
+	unsigned int AddListener(int keyCode,/* unsigned long miliseconsTriggerDeLay,*/ KeyBinding::OnKeyPress onKeyPress);
+	unsigned int AddListenerAsync(int keyCode, /*unsigned long miliseconsTriggerDeLay,*/ KeyBinding::OnKeyPress onKeyPress); 
 	// La siguiente tecla no estara imediatamente funcionando
 	void RemoveListener(unsigned int subscriptionId);
 	void RemoveListenerAsync(unsigned int subscriptionId); 
