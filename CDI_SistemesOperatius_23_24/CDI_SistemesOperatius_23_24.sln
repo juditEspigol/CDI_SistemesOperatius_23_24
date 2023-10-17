@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ClasseThreads", "ClasseThre
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ClasseInputSistem", "ClasseInputSistem\ClasseInputSistem.vcxproj", "{F4360A73-956F-46BE-A3D2-931FCDD304DC}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ClasseNodeMap", "ClasseNodeMap\ClasseNodeMap.vcxproj", "{A6606467-98DB-4802-B0AA-68F567279937}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,14 @@ Global
 		{F4360A73-956F-46BE-A3D2-931FCDD304DC}.Release|x64.Build.0 = Release|x64
 		{F4360A73-956F-46BE-A3D2-931FCDD304DC}.Release|x86.ActiveCfg = Release|Win32
 		{F4360A73-956F-46BE-A3D2-931FCDD304DC}.Release|x86.Build.0 = Release|Win32
+		{A6606467-98DB-4802-B0AA-68F567279937}.Debug|x64.ActiveCfg = Debug|x64
+		{A6606467-98DB-4802-B0AA-68F567279937}.Debug|x64.Build.0 = Debug|x64
+		{A6606467-98DB-4802-B0AA-68F567279937}.Debug|x86.ActiveCfg = Debug|Win32
+		{A6606467-98DB-4802-B0AA-68F567279937}.Debug|x86.Build.0 = Debug|Win32
+		{A6606467-98DB-4802-B0AA-68F567279937}.Release|x64.ActiveCfg = Release|x64
+		{A6606467-98DB-4802-B0AA-68F567279937}.Release|x64.Build.0 = Release|x64
+		{A6606467-98DB-4802-B0AA-68F567279937}.Release|x86.ActiveCfg = Release|Win32
+		{A6606467-98DB-4802-B0AA-68F567279937}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
