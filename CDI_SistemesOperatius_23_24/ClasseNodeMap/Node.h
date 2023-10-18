@@ -13,6 +13,8 @@ private:
 public:
 	Node(Vector2 position); 
 
+	Vector2 GetPosition(); 
+
 	INodeContent* GetContent(); 
 
 	// No esoty declarando una funcion sino unas 
@@ -20,7 +22,7 @@ public:
 	template<typename T, typename = typename std::enable_if<std::is_base_of<INodeContent, T>::value>::type>
 	T* Getcontent()
 	{
-		T^ contentCasted = dynamic_cast<T*>(_content); 
+		T* contentCasted = dynamic_cast<T*>(_content); 
 		return contentCasted; 
 	}
 
