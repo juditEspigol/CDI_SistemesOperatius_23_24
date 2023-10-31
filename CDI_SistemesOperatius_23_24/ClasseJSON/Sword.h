@@ -9,7 +9,7 @@ public:
 
 	Sword(std::string _color); 
 
-	Json::Value Encode();
+	virtual Json::Value Encode() override;
 	static Sword* Decode(Json::Value json);
 };
 

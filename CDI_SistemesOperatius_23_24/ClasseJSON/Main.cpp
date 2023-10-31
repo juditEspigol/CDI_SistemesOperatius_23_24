@@ -11,15 +11,15 @@ void ReadBaseCharacter();
 
 int main()
 {
-	CreateBaseCharacter(); 
-	//ReadBaseCharacter(); 
+	//CreateBaseCharacter(); 
+	ReadBaseCharacter(); 
 }
 
 void CreateBaseCharacter()
 {
 	Character* character = new Character(); 
 	character->life = 5; 
-	character->coin = 715; 
+	character->coin = 611; 
 	character->name = "Chikito"; 
 
 	Sword* sword = new Sword("Plateada"); 
@@ -63,6 +63,5 @@ void ReadBaseCharacter()
 		character->name = json["Name"].asString(); */
 		Character* character = Character::Decode(json["Character"]); 
 
-		character->PrintCharacter(); 
 	}
 }

@@ -3,6 +3,27 @@
 	{
 		"Coin" : 715,
 		"Life" : 5,
-		"Name" : "Chikito"
+		"Name" : "Chikito",
+		"Weapons" : 
+		[
+			{
+				"Color" : "Plateada",
+				"Damage" : 2,
+				"Range" : 1,
+				"Type" : 1
+			},
+			{
+				"Damage" : 1,
+				"Range" : 2,
+				"Type" : 2,
+				"WoodType" : "Pino"
+			},
+			{
+				"Damage" : 1,
+				"Range" : 2,
+				"Type" : 2,
+				"WoodType" : "Roble"
+			}
+		]
 	}
 }

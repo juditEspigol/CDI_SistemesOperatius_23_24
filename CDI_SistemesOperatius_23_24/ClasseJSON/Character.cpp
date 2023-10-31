@@ -1,4 +1,5 @@
 #include "Character.h"
+#include "WeaponBuilder.h"
 
 Json::Value Character::Encode()
 {
@@ -12,7 +13,7 @@ Json::Value Character::Encode()
 	{
 		weaponsArray.append(weapon->Encode()); // push_back == append
 	}
-	json["Weapon"] = weaponsArray; 
+	json["Weapons"] = weaponsArray; 
 
 	return json;
 }
@@ -25,10 +26,10 @@ Character* Character::Decode(Json::Value json)
 	character->coin = json["Coin"].asInt();
 	character->name = json["Name"].asString();
 
-	Json::Value weaponsArray = json["Weapon"];
+	Json::Value weaponsArray = json["Weapons"];
 	for (Json::Value weaponJson : weaponsArray)
 	{
-		Weapon* weapon = Weapon::Decode(weaponJson); 
+		Weapon* weapon = WeaponBuilder::CreateWepaonFromJson(weaponJson); 
 		character->weapons->push_back(weapon); 
 	}
 

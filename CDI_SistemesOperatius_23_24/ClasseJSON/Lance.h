@@ -9,7 +9,7 @@ public:
 
 	Lance(std::string _woodType); 
 
-	Json::Value Encode();
+	virtual Json::Value Encode() override;
 	static Lance* Decode(Json::Value json);
 };
 

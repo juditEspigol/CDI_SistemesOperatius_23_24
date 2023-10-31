@@ -15,7 +15,7 @@ public:
 
 	WeaponType type = UNKNOWN; 
 
-	Json::Value Encode();
-	static Weapon* Decode(Json::Value json);
+	virtual Json::Value Encode();
+	//static Weapon* Decode(Json::Value json);
 };
 
